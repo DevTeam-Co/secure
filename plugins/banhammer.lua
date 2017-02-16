@@ -266,7 +266,7 @@ if not is_gbanned(data.id_) then
   administration['gban_users'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
     if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been Globalli unbanned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been Globally unbanned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
      return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از محرومیت گروه های ربات خارج شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
@@ -342,7 +342,7 @@ administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    kick_user(data.id_, arg.chat_id)
     if not lang then
-    return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been Banned!`\n\n*User info:*\n_Username:_"..user_name.."_User id:_*"..data.id_.."*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been Banned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
     else
     return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از گروه محروم شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
@@ -391,7 +391,7 @@ if not administration[tostring(arg.chat_id)]['is_silent_users'][tostring(data.id
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "`User is not silent!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل توانایی چت کردن را داشت!`\n\n`اطلاعات کاربر:`\n_یزورنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل توانایی چت کردن را داشت!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['is_silent_users'][tostring(data.id_)] = nil
@@ -418,14 +418,14 @@ if is_gbanned(data.id_) then
    if not lang then
      return tdcli.sendMessage(arg.chat_id, "", 0, "`User is already globally banned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
     else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل از گروه های ربات محروم بود!`\n\n`اطلاعات کاربر:`\n\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل از گروه های ربات محروم بود!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
       end
    end
   administration['gban_users'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    kick_user(data.id_, arg.chat_id)
      if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been"..user_name.." *"..data.id_.."* _has been_ *globally banned*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been Globally unbanned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
      return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از تمام گروه های ربات محروم شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
