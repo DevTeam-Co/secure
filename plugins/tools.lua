@@ -537,7 +537,7 @@ tdcli.importChatInviteLink(matches[2])
    if not lang then
 return '📥*Done!*📥'
   else
-return '📥*انجام شد!*📥'》
+return '📥*انجام شد!*📥'
   end
 end
 
