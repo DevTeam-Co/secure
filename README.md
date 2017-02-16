@@ -52,9 +52,5 @@ add your ID at line 74 in bot.lua and add your ID at line 2 in tools.lua, Then r
 More information [secure bot support](https://t.me/joinchat/AAAAAEIvEBNWcpmARl-D4A)
 
 
-# Developers!
-
-[lm10]([Telegram](https://telegram.me/secure_sudo))
-
 
 
