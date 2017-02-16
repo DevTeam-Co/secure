@@ -133,7 +133,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, unban_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "silent" then
+  if cmd == "silentuser" then
 local function silent_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -170,7 +170,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, silent_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "unsilent" then
+  if cmd == "unsilentuser" then
 local function unsilent_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -363,7 +363,7 @@ administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] = nil
     return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از محرومیت خارج شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
-  if cmd == "silent" then
+  if cmd == "silentuser" then
    if is_mod1(arg.chat_id, data.id_) then
   if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "*Error!*\n_You can't silent_ *mods,owners and bot admins*", 0, "md")
@@ -386,7 +386,7 @@ administration[tostring(arg.chat_id)]['is_silent_users'][tostring(data.id_)] = u
      return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر توانایی چت کردن را از دست داد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
-  if cmd == "unsilent" then
+  if cmd == "unsilentuser" then
 if not administration[tostring(arg.chat_id)]['is_silent_users'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "`User is not silent!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
@@ -691,13 +691,13 @@ return tdcli.sendMessage(msg.to.id, msg.id, 0, "*کاربر "..matches[2].." ا�
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="unban"})
       end
    end
- if matches[1] == "silent" and is_mod(msg) then
+ if matches[1] == "silentuser" and is_mod(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="silent"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="silentuser"})
 end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_mod1(msg.to.id, matches[2]) then
@@ -726,16 +726,16 @@ data[tostring(chat)]['is_silent_users'][tostring(matches[2])] = ""
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="silent"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="silentuser"})
       end
    end
- if matches[1] == "unsilent" and is_mod(msg) then
+ if matches[1] == "unsilentuser" and is_mod(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="unsilent"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="unsilentuser"})
 end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if not is_silent_user(matches[2], chat) then
@@ -757,7 +757,7 @@ data[tostring(chat)]['is_silent_users'][tostring(matches[2])] = nil
    tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="unsilent"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="unsilentuser"})
       end
    end
 		if matches[1]:lower() == 'delete' and is_owner(msg) then
@@ -843,10 +843,10 @@ return {
 		"^[!/#](unban)$",
 		"^[!/#](unban) (.*)$",
 		"^[!/#](banlist)$",
-		"^[!/#](silent)$",
-		"^[!/#](silent) (.*)$",
-		"^[!/#](unsilent)$",
-		"^[!/#](unsilent) (.*)$",
+		"^[!/#](silentuser)$",
+		"^[!/#](silentuser) (.*)$",
+		"^[!/#](unsilentuser)$",
+		"^[!/#](unsilentuser) (.*)$",
 		"^[!/#](silentlist)$",
 		"^[!/#](kick)$",
 		"^[!/#](kick) (.*)$",
