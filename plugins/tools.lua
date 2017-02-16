@@ -247,7 +247,7 @@ if not arg.username then return false end
 if data.type_.user_.username_ then
 user_name = '@'..check_markdown(data.type_.user_.username_)
 else
-👤user_name = check_markdown(data.title_)
+user_name = check_markdown(data.title_)
 end
     if cmd == "adminprom" then
 if is_admin1(tonumber(data.id_)) then
