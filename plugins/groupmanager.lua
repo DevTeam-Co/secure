@@ -2843,7 +2843,7 @@ tdcli_function ({
     user_id_ = matches[2],
   }, action_by_id, {chat_id=msg.to.id,user_id=matches[2],cmd="whois"})
   end
-  if matches[1] == 'setflood' and is_mod(msg) then
+  if matches[1] == 'floodmax' and is_mod(msg) then
 			if tonumber(matches[2]) < 1 or tonumber(matches[2]) > 200 then
 				return "❗️_Wrong number, range is_ *[1-200]*❗️"
       end
@@ -2852,7 +2852,7 @@ tdcli_function ({
 			save_data(_config.moderation.data, data)
     return "📛_Group_ *flood* _sensitivity has been set to📛 :_ *[ "..matches[2].." ]*"
        end
-		if matches[1]:lower() == 'clean' and is_owner(msg) then
+		if matches[1]:lower() == 'delete' and is_owner(msg) then
 			if matches[2] == 'mods' then
 				if next(data[tostring(chat)]['mods']) == nil then
             if not lang then
@@ -2942,7 +2942,7 @@ tdcli_function ({
              end
 		   	end
         end
-		if matches[1]:lower() == 'clean' and is_admin(msg) then
+		if matches[1]:lower() == 'delete' and is_admin(msg) then
 			if matches[2] == 'owners' then
 				if next(data[tostring(chat)]['owners']) == nil then
              if not lang then
@@ -3423,8 +3423,8 @@ patterns ={
 "^[!/#](about)$",
 "^[!/#](setabout) (.*)$",
 "^[!/#](setname) (.*)$",
-"^[!/#](clean) (.*)$",
-"^[!/#](setflood) (%d+)$",
+"^[!/#](delete) (.*)$",
+"^[!/#](floodmax) (%d+)$",
 "^[!/#](res) (.*)$",
 "^[!/#](whois) (%d+)$",
 "^[!/#](help)$",
