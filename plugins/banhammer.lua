@@ -21,7 +21,7 @@ if is_banned(data.id_, arg.chat_id) then
    if not lang then
 		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`User is Already Banned!!`\n\n*User Info:*\n_Username:_"..user_name.." \n_User Id:_*[ "..data.id_.." ]*", 0, "md")
    else
-		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`کاربر از قبل محروم بود!!` \n\n `اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.." ]*, "md")
+		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`کاربر از قبل محروم بود!!` \n\n `اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.." ]*", "md")
 end
 kick_user(data.id_, arg.chat_id)
 end
