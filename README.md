@@ -54,7 +54,7 @@ More information [secure bot support](https://t.me/joinchat/AAAAAEIvEBNWcpmARl-
 
 # Developers!
 
-[lm10] ([Telegram](https://telegram.me/secure_sudo))
+[lm10]([Telegram](https://telegram.me/secure_sudo))
 
 
 
