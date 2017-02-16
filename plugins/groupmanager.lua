@@ -261,7 +261,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, owner_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-    if cmd == "promote" then
+    if cmd == "modset" then
 local function promote_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -321,7 +321,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, rem_owner_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-    if cmd == "demote" then
+    if cmd == "moddem" then
 local function demote_cb(arg, data)
     local administration = load_data(_config.moderation.data)
 if data.username_ then
@@ -349,7 +349,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, demote_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-    if cmd == "id" then
+    if cmd == "userid" then
 local function id_cb(arg, data)
     return tdcli.sendMessage(arg.chat_id, "", 0, "*"..data.id_.."*", 0, "md")
 end
@@ -402,7 +402,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
   return tdcli.sendMessage(arg.chat_id, "", 0, "》_کاربر_ "..user_name.." *"..data.id_.."* *به مقام صاحب گروه منتصب شد*", 0, "md")
    end
 end
-  if cmd == "promote" then
+  if cmd == "modset" then
 if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "》_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
@@ -434,7 +434,7 @@ return tdcli.sendMessage(arg.chat_id, "", 0, "》_User_ "..user_name.." *"..data
 return tdcli.sendMessage(arg.chat_id, "", 0, "》_کاربر_ "..user_name.." *"..data.id_.."* *از مقام صاحب گروه برکنار شد*", 0, "md")
    end
 end
-   if cmd == "demote" then
+   if cmd == "moddem" then
 if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "》_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
@@ -450,7 +450,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
     return tdcli.sendMessage(arg.chat_id, "", 0, "》_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر گروه برکنار شد*", 0, "md")
    end
 end
-   if cmd == "id" then
+   if cmd == "userid" then
     return tdcli.sendMessage(arg.chat_id, "", 0, "*"..data.id_.."*", 0, "md")
 end
     if cmd == "res" then
@@ -510,7 +510,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
   return tdcli.sendMessage(arg.chat_id, "", 0, "》🔺_کاربر_ "..user_name.." *"..data.id_.."* *به مقام صاحب گروه منتصب شد*", 0, "md")
    end
 end
-  if cmd == "promote" then
+  if cmd == "modset" then
 if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "》🔺_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
@@ -542,7 +542,7 @@ return tdcli.sendMessage(arg.chat_id, "", 0, "》🔺_User_ "..user_name.." *"..
 return tdcli.sendMessage(arg.chat_id, "", 0, "》🔺_کاربر_ "..user_name.." *"..data.id_.."* *از مقام صاحب گروه برکنار شد*", 0, "md")
    end
 end
-   if cmd == "demote" then
+   if cmd == "moddem" then
 if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "》🔺_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
@@ -2395,7 +2395,7 @@ local data = load_data(_config.moderation.data)
 local chat = msg.to.id
 local user = msg.from.id
 if msg.to.type ~= 'pv' then
-if matches[1] == "id" then
+if matches[1] == "userid" then
 if not matches[2] and not msg.reply_id then
    if not lang then
 return "📜*Chat ID :* _"..chat.."_\n👤*User ID :* _"..user.."_"
@@ -2408,13 +2408,13 @@ if msg.reply_id and not matches[2] then
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="id"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="userid"})
   end
 if matches[2] then
    tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="id"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="userid"})
       end
    end
 if matches[1] == "pin" and is_mod(msg) and msg.reply_id then
@@ -2513,46 +2513,46 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="remowner"})
       end
    end
-if matches[1] == "promote" and is_owner(msg) then
+if matches[1] == "modset" and is_owner(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="promote"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="modset"})
   end
   if matches[2] and string.match(matches[2], '^%d+$') then
 tdcli_function ({
     ID = "GetUser",
     user_id_ = matches[2],
-  }, action_by_id, {chat_id=msg.to.id,user_id=matches[2],cmd="promote"})
+  }, action_by_id, {chat_id=msg.to.id,user_id=matches[2],cmd="modset"})
     end
   if matches[2] and not string.match(matches[2], '^%d+$') then
    tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="promote"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="modset"})
       end
    end
-if matches[1] == "demote" and is_owner(msg) then
+if matches[1] == "moddem" and is_owner(msg) then
 if not matches[2] and msg.reply_id then
  tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="demote"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="moddem"})
   end
   if matches[2] and string.match(matches[2], '^%d+$') then
 tdcli_function ({
     ID = "GetUser",
     user_id_ = matches[2],
-  }, action_by_id, {chat_id=msg.to.id,user_id=matches[2],cmd="demote"})
+  }, action_by_id, {chat_id=msg.to.id,user_id=matches[2],cmd="moddem"})
     end
   if matches[2] and not string.match(matches[2], '^%d+$') then
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="demote"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="moddem"})
       end
    end
 
@@ -3006,7 +3006,7 @@ end
 if matches[1] == "mutelist" then
 return mutes(msg, target)
 end
-if matches[1] == "modlist" then
+if matches[1] == "managers" then
 return modlist(msg)
 end
 if matches[1] == "ownerlist" and is_owner(msg) then
@@ -3391,8 +3391,8 @@ end
  end
 return {
 patterns ={
-"^[!/#](id)$",
-"^[!/#](id) (.*)$",
+"^[!/#](userid)$",
+"^[!/#](userid) (.*)$",
 "^[!/#](pin)$",
 "^[!/#](unpin)$",
 "^[!/#](gpinfo)$",
@@ -3403,11 +3403,11 @@ patterns ={
 "^[!/#](setowner) (.*)$",
 "^[!/#](remowner)$",
 "^[!/#](remowner) (.*)$",
-"^[!/#](promote)$",
-"^[!/#](promote) (.*)$",
-"^[!/#](demote)$",
-"^[!/#](demote) (.*)$",
-"^[!/#](modlist)$",
+"^[!/#](modset)$",
+"^[!/#](modset) (.*)$",
+"^[!/#](moddem)$",
+"^[!/#](moddem) (.*)$",
+"^[!/#](managers)$",
 "^[!/#](ownerlist)$",
 "^[!/#](lock) (.*)$",
 "^[!/#](unlock) (.*)$",
