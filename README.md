@@ -1,4 +1,4 @@
-# [BDReborn](https://telegram.me/BDReborn)
+# [magicteaam](https://telegram.me/magic_teaame)
 
 **An advanced and powerful administration bot based on NEW TG-CLI
 
@@ -30,7 +30,7 @@ chmod +x beyond.sh
 ### One command
 To install everything in one command, use:
 ```sh
-cd $HOME && git clone https://github.com/BeyondTeam/BDReborn.git && cd BDReborn && chmod +x beyond.sh && ./beyond.sh install && ./beyond.sh
+cd $HOME && git clone https://github.com/powernitro/secure.git && cd secure && chmod +x secure.sh && ./secure.sh install && ./secure.sh
 ```
 
 * * *
@@ -49,35 +49,12 @@ add your ID at line 74 in bot.lua and add your ID at line 2 in tools.lua, Then r
 
 # Support and Development
 
-More information [Beyond Global Chat](https://t.me/joinchat/AAAAAEGaKOxC8K6cJ3bCcw)
+More information [secure bot support](https://t.me/joinchat/AAAAAEIvEBNWcpmARl-D4A)
 
-# Special thanks to
-[@nero_dev](https://telegram.me/nero_dev)
-
-[@K_a_I_i_I_i_n_u_x](https://telegram.me/K_a_I_i_I_i_n_u_x)
-
-[@MrHalix](https://github.com/MrHalix)
-
-[@Vysheng](https://github.com/vysheng)
-
-* * *
 
 # Developers!
 
-[SoLiD](https://github.com/solid021) ([Telegram](https://telegram.me/SoLiD))
+[lm10] ([Telegram](https://telegram.me/secure_sudo))
 
-[To0fan](https://github.com/To0fan) ([Telegram](https://telegram.me/To0fan))
 
-[Tele_Sudo](https://github.com/Tele_Sudo) ([Telegram](https://telegram.me/Tele_Sudo))
 
-[MAKAN](https://github.com/makanj) ([Telegram](https://telegram.me/MAKAN))
-
-[Ali](https://github.com/ali-ghoghnoos) ([Telegram](https://telegram.me/Exacute))
-
-[Rixel](https://github.com/Rixel) ([Telegram](https://telegram.me/Rixel))
-
-[Civey](https://github.com/Oysof) ([Telegram](https://telegram.me/Civey))
-
-### Our Telegram channel:
-
-[@BeyondTeam](https://telegram.me/BeyondTeam)
