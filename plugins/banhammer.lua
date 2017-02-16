@@ -86,7 +86,7 @@ if administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] then
     if not lang then
      return tdcli.sendMessage(arg.chat_id, "", 0, "`User is Already Banned!!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل محروم بود!!`\n\n`مشخصات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_ *"..data.id_.."*, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل محروم بود!!`\n\n`مشخصات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_ *"..data.id_.."*", "md")
       end
    end
 administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] = user_name
